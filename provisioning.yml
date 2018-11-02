@@ -1,0 +1,43 @@
+---
+# This should work on Ansible >2.2
+
+# First, Do all of the provisioning and add the hosts to in-memory inventory
+- hosts: all
+  gather_facts: false
+  #connection: local
+  #vars:
+  #  ansible_python_interpreter: "{{ansible_playbook_python}}"
+
+  tasks:
+#  - name: "INCLUDES | Include vaulted credentials"
+#    include_vars: group_vars/vaulted.yml
+#    no_log: true
+
+  - name: "PROVISION | Create VM from template"
+    vmware_guest:
+      validate_certs: "no"
+#      hostname: "{{ vcenter_host }}"
+#      username: "{{ vcenter_username }}"
+#      password: "{{ vcenter_password }}"
+      datacenter: "{{ datacenter }}"
+      name: "{{ name }}"
+      folder: "{{ folder }}"
+      template: "{{ vmtemplate }}"
+      state: poweredon
+      annotation: '{{ vmnotes|default("Nothing significant to report") }}'
+      cluster: "{{ cluster|default('homefarm_cluster') }}"
+      hardware:
+        num_cpus: "{{ cpu }}"
+        memory_mb: "{{ mem_mb }}"
+      disk:
+      - size_gb: "{{ disk }}"
+        type: thin
+        datastore: "{{ datastore }}"
+      networks:
+      - name: "{{ port_grp }}"
+        type: "{{ net_type }}"
+        ip: "{{ server_ip }}"
+        netmask: "{{ netmask }}"
+        gateway: "{{ gateway }}"
+      wait_for_ip_address: yes
+    register: new_vm
