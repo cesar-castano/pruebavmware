@@ -20,7 +20,7 @@
 #      password: "{{ vcenter_password }}"
       datacenter: "{{ datacenter }}"
       name: "{{ namevm }}"
-      folder: "{{ folder }}"
+#      folder: "{{ folder }}"
       template: "{{ vmtemplate }}"
       state: poweredon
       annotation: '{{ vmnotes|default("Nothing significant to report") }}'
