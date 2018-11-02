@@ -12,7 +12,6 @@
 #  - name: "INCLUDES | Include vaulted credentials"
 #    include_vars: group_vars/vaulted.yml
 #    no_log: true
-
   - name: "PROVISION | Create VM from template"
     vmware_guest:
       validate_certs: "no"
@@ -30,12 +29,12 @@
         num_cpus: "{{ cpu }}"
         memory_mb: "{{ mem_mb }}"
       disk:
-      - size_gb: "{{ disk }}"
+      - size_gb: "100"
         type: thin
         datastore: "{{ datastore }}"
       networks:
       - name: "{{ port_grp }}"
-        type: "{{ net_type }}"
+        type: "static"
         ip: "{{ server_ip }}"
         netmask: "{{ netmask }}"
         gateway: "{{ gateway }}"
