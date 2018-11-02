@@ -19,7 +19,7 @@
 #      username: "{{ vcenter_username }}"
 #      password: "{{ vcenter_password }}"
       datacenter: "{{ datacenter }}"
-      name: "{{ name }}"
+      name: "{{ namevm }}"
       folder: "{{ folder }}"
       template: "{{ vmtemplate }}"
       state: poweredon
