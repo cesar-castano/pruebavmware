@@ -4,7 +4,7 @@
 # First, Do all of the provisioning and add the hosts to in-memory inventory
 - hosts: all
   gather_facts: false
-  #connection: local
+  connection: local
   #vars:
   #  ansible_python_interpreter: "{{ansible_playbook_python}}"
 
