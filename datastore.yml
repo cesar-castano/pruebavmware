@@ -19,4 +19,6 @@
     delegate_to: localhost
     register: facts
   - debug:
-      var: facts
+      var: "{{ item.name }}"
+    with_items:
+      - "{{ facts.datastores }}"
