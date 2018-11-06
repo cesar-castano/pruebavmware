@@ -22,3 +22,4 @@
       msg: "{{ item.name }}"
     with_items:
       - "{{ facts.datastores }}"
+    no_log: True
