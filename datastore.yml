@@ -18,3 +18,5 @@
      validate_certs: no
     delegate_to: localhost
     register: facts
+  - debug:
+      var: facts
