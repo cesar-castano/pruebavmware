@@ -16,15 +16,15 @@
     vmware_guest:
       validate_certs: "no"
       datacenter: "{{ datacenter }}"
-      name: "{{ item }}"
+      name: "{{ item.nombre }}"
       folder: "{{ folder }}"
       template: "{{ vmtemplate }}"
       state: poweredon
       annotation: '{{ vmnotes|default("") }}'
       cluster: "{{ cluster }}"
       hardware:
-        num_cpus: "{{ cpu }}"
-        memory_mb: "{{ mem_mb }}"
+        num_cpus: "{{ item.cpu }}"
+        memory_mb: "{{ item.mem_mb }}"
       disk:
       - size_gb: "100"
         type: thin
@@ -32,8 +32,8 @@
       networks:
       - name: "{{ port_grp }}"
         type: "static"
-        ip: "{{ server_ip }}"
-        netmask: "{{ netmask }}"
+        ip: "{{ item.ip }}"
+        netmask: "{{ item.mascara }}"
         gateway: "{{ gateway }}"
         start_connected: yes
       wait_for_ip_address: yes
