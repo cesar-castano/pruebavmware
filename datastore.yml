@@ -12,11 +12,13 @@
 #  - name: "INCLUDES | Include vaulted credentials"
 #    include_vars: group_vars/vaulted.yml
 #    no_log: true
-  - name: Gather facts from standalone ESXi server having datacenter as 'ha-datacenter'
+  - name: Informacion de los datastores
     vmware_datastore_facts:
      cluster: ECL-PVMWARE01-HVD
      validate_certs: no
     delegate_to: localhost
     register: facts
   - debug:
-      var: facts
+      var: {{ item.name }}
+    with_items:
+      - "{{ facts.datastores }}"
