@@ -19,6 +19,6 @@
     delegate_to: localhost
     register: facts
   - debug:
-      msg: "{{ item.name }}"
+      msg: "{{ item }}"
     loop: "{{ facts.datastores }}"
-    no_log: true
+    #no_log: true
