@@ -20,6 +20,5 @@
     register: facts
   - debug:
       msg: "{{ item }}"
-    with_items:
-      - "{{ facts.datastores }}"
-    no_log: True
+    loop: "{{ facts.datastores }}"
+    #no_log: True
