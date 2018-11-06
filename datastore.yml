@@ -1,0 +1,20 @@
+---
+# This should work on Ansible >2.2
+
+# First, Do all of the provisioning and add the hosts to in-memory inventory
+- hosts: all
+  gather_facts: false
+  connection: local
+  #vars:
+  #  ansible_python_interpreter: "{{ansible_playbook_python}}"
+
+  tasks:
+#  - name: "INCLUDES | Include vaulted credentials"
+#    include_vars: group_vars/vaulted.yml
+#    no_log: true
+  - name: Gather facts from standalone ESXi server having datacenter as 'ha-datacenter'
+    vmware_datastore_facts:
+     cluster: ECL-PVMWARE01-HVD
+     validate_certs: no
+    delegate_to: localhost
+    register: facts
