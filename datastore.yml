@@ -21,4 +21,4 @@
   - debug:
       msg: "{{ item.name }}"
     loop: "{{ facts.datastores }}"
-    #no_log: True
+    no_log: true
